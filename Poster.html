@@ -3,35 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WATER WASH</title>
-    <link rel="icon" href="images/">
-</head>
-<body bgcolor="lightskyblue" style="color:black;">
-        <center>
-            <h1>WATER WASH 👨‍🔧</h1> 
-            <p>Keep your vehicles look stunning and the running</p>
-        </center>
-        <hr>
-        <p>We Clean Vehicles inorder keep the people's comfortabilty safe even while they are Traveling. We clean your Vehicles for keeping your surrounding Environment safe and Feel good by giving you Exciting Satisfaction</p>
-        <center>
-        <img src="images/360_F_790726679_livaA1KnP5khP1R9GNkSBgdjxf3V8V14.jpg" alt="Default Logo" width="500px">
-        <h1>
-            Be Clean Stay Clean
-        </h1>
-        <h2 style="color:red;">Heavy Duty Vehicles | Cars & Bikes </h2>
-        <h3>Foam wash , Car & Bike Polish , Body Wash are Available</h3>
-        </center>
-        <hr>
-        <center>
+    <title>WaterWash Vehicle Counter</title>
+    <link rel="icon" href="https://placehold.co/16x16/007bff/ffffff?text=W">
 
-            <h1>
-                For Further queries <br>
-                CONTACT : 9884697500 & 8015540850 
-            </h1>
-            <h2>Email : kvswaterservice@gmail.com <br>
-                <br>
-                No.195, Avadi Main Road, Veeraragavapuram, chennai - 77
-            </h2>
-        </center>
+    <!-- EMBEDDED CSS STYLING -->
+    <style>
+        /* style.css */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #e6f7ff; /* Light blue background for water theme */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #004d99;
+            margin-bottom: 20px;
+        }
+
+        /* Container for both counters, uses flex for side-by-side layout */
+        .counter-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows wrapping on small screens */
+            gap: 30px;
+            margin: 30px 0;
+            justify-content: center;
+        }
+
+        .counter {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            min-width: 280px;
+            flex: 1; /* Allows counters to grow/shrink */
+            max-width: 400px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.4em;
+            margin-top: 0;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .count-display {
+            font-size: 6em; /* Large number for easy reading */
+            font-weight: bold;
+            color: #007bff; /* Bright blue for the count */
+            margin: 10px 0;
+        }
+
+        /* Style for the Total Display */
+        .total-display {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Style for all buttons */
+        button {
+            padding: 12px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #28a745; /* Green for "Add" */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #1e7e34;
+        }
+
+        /* Specific styling for the Reset button */
+        .reset-button {
+            background-color: #dc3545; /* Red for "Reset" */
+            font-size: 1.1em;
+            padding: 10px 20px;
+        }
+
+        .reset-button:hover {
+            background-color: #c82333;
+        }
+
+        /* Media query for smaller screens (mobile) */
+        @media (max-width: 600px) {
+            .counter-container {
+                flex-direction: column; /* Stack counters vertically on mobile */
+                gap: 20px;
+            }
+            .counter {
+                min-width: 100%;
+            }
+            .count-display {
+                font-size: 4.5em;
+            }
+        }
+    </style>
+</head>
+<!-- Removed 'bgcolor="lightskyblue"' as CSS is now controlling the background -->
+<body>
+
+    <!-- HEADER SECTION -->
+    <center>
+        <h1>💧 WATER WASH Service Tracker 🚗🚚</h1>
+        <p>Keep your vehicles looking stunning and running smoothly.</p>
+    </center>
+    <hr>
+
+    <!-- INTERACTIVE COUNTER SECTION -->
+    <div class="counter-container">
+
+        <!-- CARS Counter -->
+        <section class="counter">
+            <h2>CARS SERVICED</h2>
+            <!-- Display element for the count -->
+            <p class="count-display" id="carCount">0</p>
+            <!-- Button to increment the count -->
+            <button onclick="addVehicle('car')">Add Car</button>
+        </section>
+
+        <!-- HEAVY DUTY VEHICLES Counter -->
+        <section class="counter">
+            <h2>HEAVY DUTY VEHICLES</h2>
+            <!-- Display element for the count -->
+            <p class="count-display" id="hdvCount">0</p>
+            <!-- Button to increment the count -->
+            <button onclick="addVehicle('hdv')">Add HDV</button>
+        </section>
+    </div>
+
+    <!-- Total and Reset Actions -->
+    <center>
+        <p class="total-display">TOTAL VEHICLES: <span id="totalCount">0</span></p>
+        <button class="reset-button" onclick="resetCounts()">Reset Daily Count</button>
+    </center>
+
+    <hr>
+    <!-- CONTACT SECTION (retained from original file) -->
+    <center>
+        <h1>
+            For Further queries <br>
+            CONTACT : 9884697500 & 8015540850
+        </h1>
+        <h2>Email : kvswaterservice@gmail.com <br>
+            <br>
+            No.195, Avadi Main Road, Veeraragavapuram, chennai - 77
+        </h2>
+    </center>
+
+    <!-- EMBEDDED JAVASCRIPT FUNCTIONALITY -->
+    <script>
+        // Initialize the counters for the current session
+        let carCount = 0;
+        let hdvCount = 0;
+        let totalCount = 0;
+
+        // Utility function to update all display elements
+        function updateDisplay() {
+            document.getElementById('carCount').textContent = carCount;
+            document.getElementById('hdvCount').textContent = hdvCount;
+            // Calculate and update the total count
+            totalCount = carCount + hdvCount;
+            document.getElementById('totalCount').textContent = totalCount;
+        }
+
+        /**
+         * Increments the count for the specified vehicle type and updates the display.
+         * @param {string} type - 'car' or 'hdv'
+         */
+        function addVehicle(type) {
+            if (type === 'car') {
+                carCount++;
+            } else if (type === 'hdv') {
+                hdvCount++;
+            }
+            // Update all counters after incrementing
+            updateDisplay();
+        }
+
+        /**
+         * Resets all vehicle counters to zero.
+         */
+        function resetCounts() {
+            // Reset internal counters
+            carCount = 0;
+            hdvCount = 0;
+            totalCount = 0;
+
+            // Reset the HTML displays
+            updateDisplay();
+
+            alert("Daily counts have been reset!");
+        }
+
+        // Initialize the display when the script loads
+        updateDisplay();
+    </script>
 </body>
 </html>
